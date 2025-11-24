@@ -42,3 +42,6 @@ Currently we are using REST endpoints to mutate our db - can you create a new pa
 - Make sure you have **node** installed
 - `npm i`
 - `npm run dev`
+
+Pages: "/" and "/leaderboard"
+
