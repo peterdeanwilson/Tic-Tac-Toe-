@@ -1,11 +1,15 @@
 
 # Tic-Tac-Toe
 
-## NextJs
+## Instruction
 
 - This is a NextJS App router application. You can see the documentation here: https://nextjs.org/docs/app/getting-started.
 
-- For this test, we do not care about authentication/security, though questions may be asked about how you'd plan to implement such things given more time allowance.
+- We do not care about authentication/security, though questions may be asked about how you'd plan to implement such things given more time allowance.
+
+- Please create a fork of the repository and share it when you have completed. The test should take around 2 hours, please do not spend much longer than this. You are not being judged on a completed test but rather whatever you get done in the time.
+
+- AI tools are welcome for assistance, but please do not "vibe code" the test, it will be very easy to tell if that is the case.
 
 
 
