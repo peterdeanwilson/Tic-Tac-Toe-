@@ -1,4 +1,4 @@
-import TicTacToe from "./components/tictactoe";
+import TicTacToe from "./components/TicTacToe";
 
 export default function Page() {
   return (
@@ -7,7 +7,6 @@ export default function Page() {
         <h1 className="text-4xl sm:text-5xl font-bold tracking-wide text-slate-800">
           <TicTacToe />
         </h1>
-        <div className="font-bold text-l">Current Player: You</div>
       </div>
     </div>
   );

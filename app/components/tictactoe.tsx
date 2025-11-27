@@ -64,7 +64,7 @@ export default function TicTacToe() {
     setCurrentPlayer("X");
   };
 
-  return (
+    return (
     <div className="game-container">
       <style>{`
         .game-container {
@@ -73,12 +73,14 @@ export default function TicTacToe() {
           align-items: center;
           margin-top: 30px;
           font-family: Arial, sans-serif;
+          color: black; /* make all text inside container black */
         }
 
         .status {
           font-size: 18px;
           font-weight: bold;
           margin-bottom: 20px;
+          color: black; /* ensure status text is black */
         }
 
         .board {
@@ -98,6 +100,7 @@ export default function TicTacToe() {
           background-color: white;
           border: 2px solid black;
           cursor: pointer;
+          color: black; /* X and O are black */
         }
 
         .cell:hover {
@@ -111,6 +114,7 @@ export default function TicTacToe() {
           background-color: white;
           cursor: pointer;
           font-weight: bold;
+          color: black; /* button text is black */
         }
 
         .reset-btn:hover {
