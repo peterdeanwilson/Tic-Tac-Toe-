@@ -112,10 +112,13 @@ export default function TicTacToe() {
   const saveScore = async () => {
     if (!playerName) return;
 
+    // normalise name so casing does not create duplicate players
+    const normalisedName = playerName.trim().toLowerCase();
+
     await fetch("/api/leaderboard", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name: playerName, winner })
+      body: JSON.stringify({ name: normalisedName, winner })
     });
 
     setPlayerName("");
