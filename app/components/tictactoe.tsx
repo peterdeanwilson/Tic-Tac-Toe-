@@ -123,7 +123,6 @@ export default function TicTacToe() {
             align-items: center;
             margin-top: 30px;
             font-family: Arial, sans-serif;
-            color: black;
           }
 
           .start-input {
@@ -137,7 +136,6 @@ export default function TicTacToe() {
             background-color: white;
             cursor: pointer;
             font-weight: bold;
-            color: black;
           }
 
           .start-btn:hover {
@@ -181,14 +179,12 @@ export default function TicTacToe() {
           align-items: center;
           margin-top: 30px;
           font-family: Arial, sans-serif;
-          color: black;
         }
 
         .status {
           font-size: 18px;
           font-weight: bold;
           margin-bottom: 20px;
-          color: black;
         }
 
         .cell {
@@ -201,7 +197,6 @@ export default function TicTacToe() {
           background-color: white;
           border: 2px solid black;
           cursor: pointer;
-          color: black;
         }
 
         .cell:hover {
@@ -215,7 +210,6 @@ export default function TicTacToe() {
           background-color: white;
           cursor: pointer;
           font-weight: bold;
-          color: black;
         }
 
         .reset-btn:hover {
@@ -258,4 +252,5 @@ export default function TicTacToe() {
       )}
     </div>
   );
+
 }
