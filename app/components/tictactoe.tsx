@@ -132,38 +132,11 @@ export default function TicTacToe() {
   // if the game has not started yet, show the size selector
   if (!gameStarted) {
     return (
-      <div className="game-container">
-        <style>{`
-          .game-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 30px;
-            font-family: Arial, sans-serif;
-          }
-
-          .start-input {
-            margin-top: 10px;
-          }
-
-          .start-btn {
-            margin-top: 15px;
-            padding: 8px 15px;
-            border: 2px solid black;
-            background-color: white;
-            cursor: pointer;
-            font-weight: bold;
-          }
-
-          .start-btn:hover {
-            background-color: #eee;
-          }
-        `}</style>
-
-        <h2>Select Board Size (3 to 15)</h2>
+      <div className="flex flex-col items-center mt-8 font-sans">
+        <h2 className="text-xl font-bold">Select Board Size (3 to 15)</h2>
 
         <input
-          className="start-input"
+          className="mt-3 p-2 border border-black text-center"
           type="number"
           min="3"
           max="15"
@@ -172,7 +145,7 @@ export default function TicTacToe() {
         />
 
         <button
-          className="start-btn"
+          className="mt-4 px-4 py-2 border-2 border-black bg-white font-bold hover:bg-gray-200"
           onClick={() => {
             setBoard(createBoard(boardSize));
             setWinner(null);
@@ -188,72 +161,9 @@ export default function TicTacToe() {
 
   // main game UI
   return (
-    <div className="game-container">
-      <style>{`
-        .game-container {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          margin-top: 30px;
-          font-family: Arial, sans-serif;
-        }
+    <div className="flex flex-col items-center mt-8 font-sans">
 
-        .status {
-          font-size: 18px;
-          font-weight: bold;
-          margin-bottom: 20px;
-        }
-
-        .cell {
-          width: ${cellSize}px;
-          height: ${cellSize}px;
-          font-size: ${cellSize * 0.6}px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background-color: white;
-          border: 2px solid black;
-          cursor: pointer;
-        }
-
-        .cell:hover {
-          background-color: #f0f0f0;
-        }
-
-        .reset-btn {
-          margin-top: 20px;
-          padding: 8px 15px;
-          border: 2px solid black;
-          background-color: white;
-          cursor: pointer;
-          font-weight: bold;
-        }
-
-        .reset-btn:hover {
-          background-color: #eee;
-        }
-
-        .name-input {
-          margin-top: 15px;
-          padding: 5px;
-          border: 1px solid black;
-        }
-
-        .save-btn {
-          margin-top: 10px;
-          padding: 8px 15px;
-          border: 2px solid black;
-          cursor: pointer;
-          font-weight: bold;
-          background-color: white;
-        }
-
-        .save-btn:hover {
-          background-color: #eee;
-        }
-      `}</style>
-
-      <div className="status">
+      <div className="text-lg font-bold mb-4">
         {winner
           ? winner === "Draw"
             ? "It is a draw"
@@ -262,19 +172,22 @@ export default function TicTacToe() {
       </div>
 
       <div
-        className="board"
+        className="grid gap-1"
         style={{
-          display: "grid",
           gridTemplateColumns: `repeat(${boardSize}, ${cellSize}px)`,
           gridTemplateRows: `repeat(${boardSize}, ${cellSize}px)`,
-          gap: "5px"
         }}
       >
         {board.map((value, index) => (
           <button
             key={index}
-            className="cell"
             onClick={() => handleClick(index)}
+            className="flex justify-center items-center border-2 border-black bg-white hover:bg-gray-200"
+            style={{
+              width: `${cellSize}px`,
+              height: `${cellSize}px`,
+              fontSize: `${cellSize * 0.6}px`,
+            }}
           >
             {value}
           </button>
@@ -282,16 +195,19 @@ export default function TicTacToe() {
       </div>
 
       {winner && (
-        <div style={{ textAlign: "center", marginTop: "20px" }}>
-          <div>Enter your name</div>
+        <div className="text-center mt-6">
+          <div className="mb-2">Enter your name</div>
 
           <input
-            className="name-input"
+            className="p-2 border border-black text-center"
             value={playerName}
             onChange={(e) => setPlayerName(e.target.value)}
           />
 
-          <button className="save-btn" onClick={saveScore}>
+          <button
+            className="mt-3 px-4 py-2 border-2 border-black bg-white font-bold hover:bg-gray-200"
+            onClick={saveScore}
+          >
             Save Score
           </button>
         </div>
