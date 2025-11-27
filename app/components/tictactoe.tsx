@@ -16,6 +16,16 @@ export default function TicTacToe() {
   const [currentPlayer, setCurrentPlayer] = useState<"X" | "O">("X");
   const [winner, setWinner] = useState<string | null>(null);
 
+  // decide box size based on board size so the board fits on screen
+  const getCellSize = (size: number) => {
+    if (size <= 5) return 80;
+    if (size <= 8) return 60;
+    if (size <= 12) return 45;
+    return 35; // for large boards like 13 to 15
+  };
+
+  const cellSize = getCellSize(boardSize);
+
   // handles when a player clicks a square
   const handleClick = (index: number) => {
     // ignore if square already filled or the game is over
@@ -182,9 +192,9 @@ export default function TicTacToe() {
         }
 
         .cell {
-          width: 80px;
-          height: 80px;
-          font-size: 32px;
+          width: ${cellSize}px;
+          height: ${cellSize}px;
+          font-size: ${cellSize * 0.6}px;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -225,8 +235,8 @@ export default function TicTacToe() {
         className="board"
         style={{
           display: "grid",
-          gridTemplateColumns: `repeat(${boardSize}, 80px)`,
-          gridTemplateRows: `repeat(${boardSize}, 80px)`,
+          gridTemplateColumns: `repeat(${boardSize}, ${cellSize}px)`,
+          gridTemplateRows: `repeat(${boardSize}, ${cellSize}px)`,
           gap: "5px"
         }}
       >
