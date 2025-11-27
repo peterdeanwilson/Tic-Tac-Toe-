@@ -4,9 +4,9 @@ export default async function Page() {
   const response = await fetch(`${baseUrl}/api/leaderboard`, {
     cache: "no-store",
   });
-  const leaderboardData = await response.json();
 
-  console.log(leaderboardData);
+  const json = await response.json();
+  const leaderboardData = json.data || [];
 
   return (
     <div className="flex-col mt-10">
@@ -15,10 +15,17 @@ export default async function Page() {
           Leaderboard
         </h1>
       </div>
+
       <div className="flex flex-col items-center gap-4 flex-1 mt-10">
-        <div className="font-bold text-l">1. You</div>
-        <div className="font-bold text-l">2. Not you</div>
-        <div className="font-bold text-l">3. Also not you</div>
+        {leaderboardData.length === 0 && (
+          <div className="font-bold text-l">No scores yet. Play a game first.</div>
+        )}
+
+        {leaderboardData.map((row: any, index: number) => (
+          <div key={row.id} className="font-bold text-l">
+            {index + 1}. {row.name} won as {row.winner}
+          </div>
+        ))}
       </div>
     </div>
   );

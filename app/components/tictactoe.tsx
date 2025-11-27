@@ -8,6 +8,9 @@ export default function TicTacToe() {
   // state to track if the user has started the game
   const [gameStarted, setGameStarted] = useState(false);
 
+  // state for player name (used when submitting to leaderboard)
+  const [playerName, setPlayerName] = useState("");
+
   // helper function to create a blank board for any size
   const createBoard = (size: number) => Array(size * size).fill("");
 
@@ -103,6 +106,20 @@ export default function TicTacToe() {
     if (b.every(cell => cell !== "")) return "Draw";
 
     return null;
+  };
+
+  // send the winner + name to the leaderboard API
+  const saveScore = async () => {
+    if (!playerName) return;
+
+    await fetch("/api/leaderboard", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: playerName, winner })
+    });
+
+    setPlayerName("");
+    resetGame();
   };
 
   // resets the game but keeps the chosen board size
@@ -215,6 +232,25 @@ export default function TicTacToe() {
         .reset-btn:hover {
           background-color: #eee;
         }
+
+        .name-input {
+          margin-top: 15px;
+          padding: 5px;
+          border: 1px solid black;
+        }
+
+        .save-btn {
+          margin-top: 10px;
+          padding: 8px 15px;
+          border: 2px solid black;
+          cursor: pointer;
+          font-weight: bold;
+          background-color: white;
+        }
+
+        .save-btn:hover {
+          background-color: #eee;
+        }
       `}</style>
 
       <div className="status">
@@ -246,11 +282,20 @@ export default function TicTacToe() {
       </div>
 
       {winner && (
-        <button className="reset-btn" onClick={resetGame}>
-          Start New Game
-        </button>
+        <div style={{ textAlign: "center", marginTop: "20px" }}>
+          <div>Enter your name</div>
+
+          <input
+            className="name-input"
+            value={playerName}
+            onChange={(e) => setPlayerName(e.target.value)}
+          />
+
+          <button className="save-btn" onClick={saveScore}>
+            Save Score
+          </button>
+        </div>
       )}
     </div>
   );
-
 }
